@@ -1,0 +1,21 @@
+{
+  "name": "playwright-android",
+  "version": "1.0.0",
+  "description": "playwright e2e against android device",
+  "main": "index.js",
+  "scripts": {
+    "test": "adb devices && playwright test --config=playwright.config.ts",
+    "report": "npx playwright show-report"
+    },
+  "keywords": [
+    "playwright",
+    "mobile",
+    "automation",
+    "android"
+  ],
+  "author": "Amrsa",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.30.0"
+  }
+}
