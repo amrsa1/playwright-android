@@ -15,7 +15,7 @@ jobs:
         node-version: 18
 
     - name: Build docker image
-      run: docker build -t playwright .
+      run: docker build --platform windows/amd64 -t playwright 
 
     - name: Initialize container
       run: docker run --privileged -td --name android playwright
