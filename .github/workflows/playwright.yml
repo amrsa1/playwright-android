@@ -1,30 +1,32 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - uses: actions/checkout@v3
 
-    - name: Build docker image
-      run: docker build --platform windows/amd64 -t playwright .
+      - name: Set up Docker
+        uses: docker/setup-docker@v1
+        with:
+          docker-version: "20.10.8"
+          compose-version: "2.0.0"
 
-    - name: Initialize container
-      run: docker run --privileged -td --name android playwright
-  
+      - name: Build docker image
+        run: docker build -t playwright .
 
-    - name: Prepare emulator & execute the test
-      run: |
-            docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
-    
+      - name: Initialize container
+        run: docker run --privileged -td --name android playwright
+
+      - name: Prepare emulator & execute the test
+        run: |
+          docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
+
     # - name: Run Playwright tests
     #   run: npx playwright test
     # - uses: actions/upload-artifact@v3
