@@ -4,9 +4,6 @@ package-lock.json
 playwright-report
 playwright/.cache/
 coverage
-Dockerfile
-start_emu_headless.sh
 artifacts
 .dockerignore
 docker-compose.yml
-.github

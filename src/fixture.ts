@@ -16,7 +16,7 @@ const fixtures = base.extend<MyFixtures>({
             .then(async res => {
                 device = await _android.connect(res.wsEndpoint())
                 await device.shell('pm clear com.android.chrome');
-                await device.shell('am force-stop com.android.chrome');
+                await device.shell('am set-debug-app --persistent com.android.chrome')
                 const context = await device.launchBrowser({
                     baseURL: baseURL
                 });
