@@ -26,6 +26,7 @@ jobs:
         run: |
           docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
 
+
     # - name: Run Playwright tests
     #   run: npx playwright test
     # - uses: actions/upload-artifact@v3
