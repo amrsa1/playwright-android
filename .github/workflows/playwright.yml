@@ -23,7 +23,7 @@ jobs:
 
     - name: Prepare emulator & execute the test
       run: |
-            docker exec -it --privileged android bash -c "./start_emu_headless.sh && npm run test"
+            docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
     
     # - name: Run Playwright tests
     #   run: npx playwright test
