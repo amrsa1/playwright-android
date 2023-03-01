@@ -18,9 +18,9 @@ jobs:
         env:
           EMULATOR_NAME: nexus
           EMULATOR_DEVICE: Nexus 6
-          ANDROID_EMULATOR_PACKAGE: system-images;android-33;google_apis_playstore;x86_64
+          ANDROID_EMULATOR_PACKAGE: "system-images;android-33;google_apis_playstore;x86_64"
         run: |
-            echo "no" | avdmanager --verbose create avd --force --name "$EMULATOR_NAME" --device "$EMULATOR_DEVICE" --package "$ANDROID_EMULATOR_PACKAGE"
+            echo "no" | avdmanager --verbose create avd --force --name "$EMULATOR_NAME" --device "$EMULATOR_DEVICE" --package $ANDROID_EMULATOR_PACKAGE
             emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off
 
 #       - name: Build docker image
