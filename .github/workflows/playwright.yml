@@ -27,8 +27,8 @@ jobs:
         
       - name: Add avdmanager and sdkmanager to PATH
         run: |
-           echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/" >> $GITHUB_ENV
-           echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/" >> $GITHUB_ENV
+           echo "PATH:$ANDROID_HOME/cmdline-tools/latest/bin/:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"  >> $GITHUB_ENV
+
      
       - name: Install Sdk
         run: |
