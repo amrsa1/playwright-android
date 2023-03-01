@@ -11,23 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-#       - name: Install Docker
-#         run: |
-#             brew update
-#             brew install docker
-#             colima start
-#         shell: bash
+      - name: Set Android Home
+        run: echo "ANDROID_HOME=$HOME/android-sdk-linux" >> $GITHUB_ENV
         
+      - name: Add avdmanager to PATH
+        run: echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/" >> $GITHUB_ENV
+  
       - name: Verify
         env:
           EMULATOR_NAME: nexus
           EMULATOR_DEVICE: Nexus 6
           ANDROID_EMULATOR_PACKAGE: system-images;android-33;google_apis_playstore;x86_64
         run: |
-            cd $ANDROID_HOME/cmdline-tools/latest && ls
             echo "no" | avdmanager --verbose create avd --force --name "${EMULATOR_NAME}" --device "${EMULATOR_DEVICE}" --package "${ANDROID_EMULATOR_PACKAGE}"
             emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off
-        shell: bash  
 
 #       - name: Build docker image
 #         run: docker build -t playwright .
