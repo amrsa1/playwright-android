@@ -14,14 +14,9 @@ jobs:
       - name: Install Docker
         run: |
             brew update
-            brew install --cask docker
+            brew install docker
+            colima start
         shell: bash
-        
-      - name: Add Docker to path
-        run: |
-             echo 'export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"' >> ~/.bash_profile
-             source ~/.bash_profile
-        shell: bash  
         
       - name: Verify Docker installation
         run: |
