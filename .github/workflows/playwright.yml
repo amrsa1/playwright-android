@@ -33,7 +33,7 @@ jobs:
       - name: Install Sdk
         run: |
            yes Y | sdkmanager --licenses 
-           yes Y | sdkmanager --verbose --no_https "${ANDROID_EMULATOR_PACKAGE} ${ANDROID_PLATFORM_VERSION} ${ANDROID_BUILD_TOOLS} platform-tools"
+           yes Y | sdkmanager --verbose --no_https $ANDROID_SDK_PACKAGES
   
       - name: Verify
         run: |
