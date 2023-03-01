@@ -10,9 +10,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Set Android Home
-        run: echo "ANDROID_HOME=$HOME/android-sdk-linux" >> $GITHUB_ENV
         
       - name: Add avdmanager to PATH
         run: echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/" >> $GITHUB_ENV
