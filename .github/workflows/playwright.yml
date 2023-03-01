@@ -16,7 +16,7 @@ env:
   ANDROID_EMULATOR_PACKAGE: system-images;android-$API_LEVEL;$ANDROID_TARGET;$ANDROID_ARCH
   ANDROID_PLATFORM_VERSION: platforms;android-$API_LEVEL
   ANDROID_BUILD_TOOLS: build-tools;33.0.1
-  ANDROID_SDK_PACKAGES: system-images;android-33;google_apis_playstore;x86_64 platforms;android-33 build-tools;33.0.1 platform-tools
+  ANDROID_SDK_PACKAGES: system-images;android-33;google_apis;x86_64 platforms;android-33 build-tools;33.0.1 platform-tools
    
 jobs:
   test:
@@ -38,7 +38,7 @@ jobs:
   
       - name: Verify
         run: |
-            echo "no" | avdmanager --verbose create avd --force --name "${EMULATOR_NAME}" --device "${EMULATOR_DEVICE}" --package "${ANDROID_EMULATOR_PACKAGE}"
+            echo "no" | avdmanager --verbose create avd --force --name "${EMULATOR_NAME}" --package "${ANDROID_EMULATOR_PACKAGE}"
             emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off
 
 #       - name: Build docker image
