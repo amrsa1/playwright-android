@@ -27,13 +27,15 @@ jobs:
         
       - name: Add avdmanager and sdkmanager to PATH
         run: |
-            echo "PATH=%PATH%;%ANDROID_HOME%\cmdline-tools\bin;%ANDROID_HOME%\cmdline-tools\latest\bin;%ANDROID_HOME%\emulator;%ANDROID_HOME%\tools\bin;%ANDROID_SDK_ROOT%\platform-tools;%ANDROID_SDK_ROOT%\build-tools\${ANDROID_BUILD_TOOLS_VERSION}" >> $env:GITHUB_ENV
+            set Path=%Path%;%ANDROID_HOME%\cmdline-tools\latest\bin;%ANDROID_HOME%\emulator;%ANDROID_SDK_ROOT%\platform-tools;%ANDROID_HOME%\build-tools\${ANDROID_BUILD_TOOLS_VERSION}
             echo %ANDROID_HOME%
 #           echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/build-tools/${ANDROID_BUILD_TOOLS_VERSION}" >> $GITHUB_ENV
  #          mkdir -p $ANDROID_HOME/cmdline-tools/tools
   #         mv $ANDROID_HOME/cmdline-tools/latest/* $ANDROID_HOME/cmdline-tools/tools/
    #        rm -r $ANDROID_HOME/cmdline-tools/latest/
     #       cd $ANDROID_HOME/cmdline-tools/tools && ls
+    #       echo "PATH=%PATH%;%ANDROID_HOME%\cmdline-tools\bin;%ANDROID_HOME%\cmdline-tools\latest\bin;%ANDROID_HOME%\emulator;%ANDROID_HOME%\tools\bin;%ANDROID_SDK_ROOT%\platform-tools;%ANDROID_SDK_ROOT%\build-tools\${ANDROID_BUILD_TOOLS_VERSION}" >> $env:GITHUB_ENV
+
 
       - name: Install Sdk
         run: |
