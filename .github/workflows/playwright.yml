@@ -40,15 +40,14 @@ jobs:
 
       - name: Install Sdk
         run: |
-           setx PATH "%PATH%;%ANDROID_HOME%\cmdline-tools\latest\bin\"
-           echo y | sdkmanager.bat --licenses 
-           echo y | sdkmanager --install $ANDROID_SDK_PACKAGES
+           echo y | "%ANDROID_HOME%\cmdline-tools\latest\bin\sdkmanager.bat" --licenses
+           echo y | "%ANDROID_HOME%\cmdline-tools\latest\bin\sdkmanager.bat" --install $ANDROID_SDK_PACKAGES
         shell:
           cmd
   
       - name: Verify
         run: |
-            echo "no" | avdmanager --verbose create avd --force --name "nexus" --device "Nexus 6" -k "system-images;android-33;google_apis;x86_64"
+            echo "no" | "%ANDROID_HOME%\cmdline-tools\latest\bin\avdmanager.bat" --verbose create avd --force --name "nexus" --device "Nexus 6" -k "system-images;android-33;google_apis;x86_64"
             emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off -accel on
 
 #       - name: Build docker image
