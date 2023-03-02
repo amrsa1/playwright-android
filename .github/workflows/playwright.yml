@@ -16,7 +16,7 @@ env:
   ANDROID_EMULATOR_PACKAGE: system-images;android-$API_LEVEL;$ANDROID_TARGET;$ANDROID_ARCH
   ANDROID_PLATFORM_VERSION: platforms;android-$API_LEVEL
   ANDROID_BUILD_TOOLS: build-tools;33.0.2
-  ANDROID_SDK_PACKAGES: system-images;android-33;google_apis;x86 platforms;android-33 build-tools;33.0.2 platform-tools emulator
+  ANDROID_SDK_PACKAGES: system-images;android-33;google_apis;${ env.ANDROID_ARCH } platforms;android-33 build-tools;33.0.2 platform-tools emulator
    
 jobs:
   test:
