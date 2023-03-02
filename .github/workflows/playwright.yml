@@ -21,37 +21,29 @@ env:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         
       - name: Add avdmanager and sdkmanager to PATH
         run: |
-            setx PATH "%PATH%;%ANDROID_HOME%\cmdline-tools\latest\bin\;%ANDROID_HOME%\emulator;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\build-tools\${ANDROID_BUILD_TOOLS_VERSION}"
-            refreshenv
-            echo %ANDROID_HOME%
-#           echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/build-tools/${ANDROID_BUILD_TOOLS_VERSION}" >> $GITHUB_ENV
+            echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/${ANDROID_BUILD_TOOLS_VERSION}" >> $GITHUB_ENV
  #          mkdir -p $ANDROID_HOME/cmdline-tools/tools
   #         mv $ANDROID_HOME/cmdline-tools/latest/* $ANDROID_HOME/cmdline-tools/tools/
    #        rm -r $ANDROID_HOME/cmdline-tools/latest/
     #       cd $ANDROID_HOME/cmdline-tools/tools && ls
     #       echo "PATH=%PATH%;%ANDROID_HOME%\cmdline-tools\bin;%ANDROID_HOME%\cmdline-tools\latest\bin;%ANDROID_HOME%\emulator;%ANDROID_HOME%\tools\bin;%ANDROID_SDK_ROOT%\platform-tools;%ANDROID_SDK_ROOT%\build-tools\${ANDROID_BUILD_TOOLS_VERSION}" >> $env:GITHUB_ENV
-        shell:
-          cmd
 
       - name: Install Sdk
         run: |
            echo y | sdkmanager --licenses
-           echo y | "%ANDROID_HOME%\cmdline-tools\latest\bin\sdkmanager.bat" --install system-images;android-33;google_apis;x86_64 platforms;android-33 build-tools;33.0.2 platform-tools
-        shell:
-          cmd
+           echo y | sdkmanager --install ${ANDROID_SDK_PACKAGES}
   
       - name: Verify
         run: |
-            echo "no" | "%ANDROID_HOME%\cmdline-tools\latest\bin\avdmanager.bat" --verbose create avd --force --name "nexus" --device "Nexus 6" -k "system-images;android-33;google_apis;x86"
-            "%ANDROID_HOME%\emulator\emulator.exe" @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off -accel on
-        shell:
-          cmd
+            echo "no" | emulator --verbose create avd --force --name "nexus" --device "Nexus 6" -k "system-images;android-33;google_apis;x86"
+            emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off
+
           
 #       - name: Build docker image
 #         run: docker build -t playwright .
