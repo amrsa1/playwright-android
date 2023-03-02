@@ -41,7 +41,7 @@ jobs:
       - name: Install Sdk
         run: |
            echo y | "%ANDROID_HOME%\cmdline-tools\latest\bin\sdkmanager.bat" --licenses
-           echo y | "%ANDROID_HOME%\cmdline-tools\latest\bin\sdkmanager.bat" --install $ANDROID_SDK_PACKAGES
+           echo y | "%ANDROID_HOME%\cmdline-tools\latest\bin\sdkmanager.bat" --install ${ANDROID_SDK_PACKAGES}
         shell:
           cmd
   
