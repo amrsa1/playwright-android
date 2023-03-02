@@ -42,7 +42,7 @@ jobs:
 
       - name: Install Sdk
         run: |
-           echo y | sdkmanager --licenses 
+           echo y | "%ANDROID_HOME%\cmdline-tools\bin\sdkmanager.bat" --licenses 
            echo y | sdkmanager --install $ANDROID_SDK_PACKAGES
         shell:
           cmd
