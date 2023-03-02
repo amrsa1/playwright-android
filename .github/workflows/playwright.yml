@@ -34,7 +34,6 @@ jobs:
            cd $ANDROID_HOME/cmdline-tools/ && ls
            cd tool && ls
 
-     
       - name: Install Sdk
         run: |
            yes Y | sdkmanager --licenses 
