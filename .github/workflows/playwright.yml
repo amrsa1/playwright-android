@@ -16,7 +16,7 @@ env:
   ANDROID_EMULATOR_PACKAGE: system-images;android-$API_LEVEL;$ANDROID_TARGET;$ANDROID_ARCH
   ANDROID_PLATFORM_VERSION: platforms;android-$API_LEVEL
   ANDROID_BUILD_TOOLS: build-tools;33.0.2
-  ANDROID_SDK_PACKAGES: system-images;android-33;google_apis;x86_64 platforms;android-33 build-tools;33.0.1 platform-tools
+  ANDROID_SDK_PACKAGES: system-images;android-33;google_apis;x86_64 platforms;android-33 build-tools;33.0.2 platform-tools
    
 jobs:
   test:
@@ -33,8 +33,8 @@ jobs:
       - name: Install Sdk
         run: |
            yes Y | sdkmanager --licenses 
-#           yes Y | sdkmanager --verbose --no_https $ANDROID_SDK_PACKAGES
- #          sdkmanager --list
+           yes Y | sdkmanager --install $ANDROID_SDK_PACKAGES
+           sdkmanager --list
   
       - name: Verify
         run: |
