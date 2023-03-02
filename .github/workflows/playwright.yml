@@ -27,7 +27,8 @@ jobs:
         
       - name: Add avdmanager and sdkmanager to PATH
         run: |
-            cd %ANDROID_HOME% && dir && cd cmdline-tools && dir
+            cd C:\Android\android-sdk 
+            dir
             set Path=%Path%;%ANDROID_HOME%\cmdline-tools\bin;%ANDROID_HOME%\emulator;%ANDROID_SDK_ROOT%\platform-tools;%ANDROID_HOME%\build-tools\${ANDROID_BUILD_TOOLS_VERSION}
             echo %ANDROID_HOME%
 #           echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/build-tools/${ANDROID_BUILD_TOOLS_VERSION}" >> $GITHUB_ENV
