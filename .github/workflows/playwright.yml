@@ -32,7 +32,6 @@ jobs:
            mv $ANDROID_HOME/cmdline-tools/latest/* $ANDROID_HOME/cmdline-tools/tools/
            rm -r $ANDROID_HOME/cmdline-tools/latest/
            cd $ANDROID_HOME/cmdline-tools/ && ls
-           cd tool && ls
 
       - name: Install Sdk
         run: |
