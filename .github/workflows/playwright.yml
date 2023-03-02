@@ -27,7 +27,7 @@ jobs:
         
       - name: Add avdmanager and sdkmanager to PATH
         run: |
-           echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/:$ANDROID_HOME/emulator/:$ANDROID_HOME/tools/bin/:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/build-tools/${ANDROID_BUILD_TOOLS_VERSION}" >> $GITHUB_ENV
+           echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/:$ANDROID_HOME/emulator/:$ANDROID_HOME/tools/bin/:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/build-tools/${ANDROID_BUILD_TOOLS_VERSION}:$ANDROID_HOME/tools/:$ANDROID_HOME/emulator/" >> $GITHUB_ENV
 
      
       - name: Install Sdk
@@ -38,7 +38,7 @@ jobs:
   
       - name: Verify
         run: |
-            echo "no" | avdmanager --verbose create avd --force --name "nexus" -k "system-images;android-33;google_apis;x86_64"
+            echo "no" | avdmanager --verbose create avd --force --name "nexus" --device "Nexus 6" -k "system-images;android-33;google_apis;x86_64"
             emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off
 
 #       - name: Build docker image
