@@ -36,7 +36,8 @@ jobs:
    #        rm -r $ANDROID_HOME/cmdline-tools/latest/
     #       cd $ANDROID_HOME/cmdline-tools/tools && ls
     #       echo "PATH=%PATH%;%ANDROID_HOME%\cmdline-tools\bin;%ANDROID_HOME%\cmdline-tools\latest\bin;%ANDROID_HOME%\emulator;%ANDROID_HOME%\tools\bin;%ANDROID_SDK_ROOT%\platform-tools;%ANDROID_SDK_ROOT%\build-tools\${ANDROID_BUILD_TOOLS_VERSION}" >> $env:GITHUB_ENV
-
+        shell:
+          cmd
 
       - name: Install Sdk
         run: |
