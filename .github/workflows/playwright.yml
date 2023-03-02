@@ -49,7 +49,9 @@ jobs:
         run: |
             echo "no" | "%ANDROID_HOME%\cmdline-tools\latest\bin\avdmanager.bat" --verbose create avd --force --name "nexus" --device "Nexus 6" -k "system-images;android-33;google_apis;x86_64"
             emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off -accel on
-
+        shell:
+          cmd
+          
 #       - name: Build docker image
 #         run: docker build -t playwright .
 #         shell: bash
