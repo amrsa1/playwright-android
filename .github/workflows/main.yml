@@ -38,7 +38,7 @@ jobs:
         run: |
            sdkmanager --list
            echo y | sdkmanager --licenses
-           echo y | sdkmanager --install ${ANDROID_SDK_PACKAGES}
+           yes Y | sdkmanager --verbose --no_https ${ANDROID_SDK_PACKAGES}
            sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
   
       - name: Verify
