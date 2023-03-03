@@ -28,7 +28,9 @@ jobs:
       - name: Add avdmanager and sdkmanager to PATH
         run: |
             echo "PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/${ANDROID_BUILD_TOOLS_VERSION}" >> $GITHUB_ENV
- #          mkdir -p $ANDROID_HOME/cmdline-tools/tools
+            echo "PATH=$PATH:$ANDROID_HOME/emulator" >> $GITHUB_ENV
+
+     #      mkdir -p $ANDROID_HOME/cmdline-tools/tools
   #         mv $ANDROID_HOME/cmdline-tools/latest/* $ANDROID_HOME/cmdline-tools/tools/
    #        rm -r $ANDROID_HOME/cmdline-tools/latest/
     #       cd $ANDROID_HOME/cmdline-tools/tools && ls
@@ -49,7 +51,7 @@ jobs:
 
       - name: launch emulator
         run: |
-           $ANDROID_HOME/emulator/emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu swiftshader_indirect
+            emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu swiftshader_indirect
 
 #       - name: Build docker image
 #         run: docker build -t playwright .
