@@ -21,8 +21,8 @@ env:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: 
-      group: ubuntu-runners
+    runs-on:
+      labels: ubuntu-20.04-16core
     steps:
       - uses: actions/checkout@v3
         
