@@ -7,7 +7,7 @@ on:
     
 env:
   ANDROID_ARCH: x86_64
-  ANDROID_TARGET: google_apis_playstore
+  ANDROID_TARGET: google_apis
   API_LEVEL: 30
   BUILD_TOOLS: 33.0.2
   ANDROID_API_LEVEL: android-$API_LEVEL
@@ -16,7 +16,7 @@ env:
   ANDROID_EMULATOR_PACKAGE: system-images;android-$API_LEVEL;$ANDROID_TARGET;$ANDROID_ARCH
   ANDROID_PLATFORM_VERSION: platforms;android-$API_LEVEL
   ANDROID_BUILD_TOOLS: build-tools;33.0.2
-  ANDROID_SDK_PACKAGES: system-images;android-30;google_apis;x86 platforms;android-30 build-tools;33.0.2 platform-tools emulator
+  ANDROID_SDK_PACKAGES: system-images;android-33;google_apis;x86_64 platforms;android-33 build-tools;33.0.2 platform-tools emulator
    
 jobs:
   test:
@@ -39,12 +39,12 @@ jobs:
         run: |
            sdkmanager --list
            yes Y | sdkmanager --licenses
-           yes Y | sdkmanager --verbose --no_https ${ANDROID_SDK_PACKAGES}
+           sdkmanager --install ${ANDROID_SDK_PACKAGES}
   
       - name: Verify
         run: |
-            echo "no" | avdmanager --verbose create avd --force --name "nexus" --device "Nexus 6" -k "system-images;android-30;google_apis;x86"
-            emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu off
+            echo "no" | avdmanager --verbose create avd --force --name "nexus" --abi '${ANDROID_TARGET}/${ANDROID_ARCH}' -k "system-images;android-33;${ANDROID_TARGET};${ANDROID_ARCH}"
+            emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu swiftshader_indirect
 
 #       - name: Build docker image
 #         run: docker build -t playwright .
