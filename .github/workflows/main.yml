@@ -43,7 +43,7 @@ jobs:
   
       - name: Verify
         run: |
-            echo "yes" | avdmanager --verbose create avd --force --name "nexus" --abi "${ANDROID_TARGET}/${ANDROID_ARCH}" -k "system-images;android-33;${ANDROID_TARGET};${ANDROID_ARCH}"
+            yes | avdmanager --verbose create avd --force --name "nexus" --abi "${ANDROID_TARGET}/${ANDROID_ARCH}" -k "system-images;android-33;${ANDROID_TARGET};${ANDROID_ARCH}"
             emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 2048  -gpu swiftshader_indirect
 
 #       - name: Build docker image
