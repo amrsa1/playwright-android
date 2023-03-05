@@ -15,7 +15,12 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-        
+      
+      - name: Install docker engine
+        run: |
+           brew install docker
+           colima start
+           
       - name: Build docker image
         run: docker build -t playwright .
 
