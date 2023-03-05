@@ -8,7 +8,7 @@ on:
 env:
   EMULATOR_TIMEOUT: 400
   OSTYPE: linux
-  HW_ACCEL_OVERRIDE: "-accel on"
+  HW_ACCEL_OVERRIDE: "-accel off"
    
 jobs:
   test:
