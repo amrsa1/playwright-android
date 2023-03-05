@@ -30,7 +30,7 @@ jobs:
 
       - name: Prepare emulator & execute the test
         run: |
-          chmod a+x start_emu_headless.sh
+          docker exec -t --privileged android bash -c "chmod +x start_emu_headless.sh"
           docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
 
 
