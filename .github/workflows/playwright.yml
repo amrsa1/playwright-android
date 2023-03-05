@@ -1,0 +1,37 @@
+name: Playwright-Android Tests
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+    
+env:
+  EMULATOR_TIMEOUT: 400
+  OSTYPE: macos
+   
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+        
+      - name: Build docker image
+        run: docker build -t playwright .
+
+      - name: Initialize container
+        run: docker run -td --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE --name android playwright
+
+      - name: Prepare emulator & execute the test
+        run: |
+          docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
+
+
+    # - name: Run Playwright tests
+    #   run: npx playwright test
+    # - uses: actions/upload-artifact@v3
+    #   if: always()
+    #   with:
+    #     name: playwright-report
+    #     path: playwright-report/
+    #     retention-days: 30
