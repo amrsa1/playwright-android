@@ -25,7 +25,7 @@ jobs:
         run: docker build -t playwright .
 
       - name: Initialize container
-        run: docker run -td --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE --name android playwright
+        run: docker run -td --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE -e hw_accel_flag=1 --name android playwright
 
       - name: Prepare emulator & execute the test
         run: |
