@@ -6,9 +6,9 @@ on:
     branches: [main, master]
     
 env:
-  EMULATOR_TIMEOUT: 400
+  EMULATOR_TIMEOUT: 600
   OSTYPE: linux
-  HW_ACCEL_OVERRIDE: "-accel off"
+  HW_ACCEL_OVERRIDE: "-accel auto"
    
 jobs:
   test:
