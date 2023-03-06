@@ -31,9 +31,10 @@ jobs:
 
       - name: Prepare emulator & execute the test
         run: |
-          docker exec -t --privileged android bash -c "emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 4096 -accel off -camera-back none -gpu swiftshader_indirect"
-#         docker exec -t --privileged android bash -c "chmod +x start_emu_headless.sh"
-#         docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
+         docker exec -t --privileged android bash -c "chmod +x start_emu_headless.sh"
+         docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
+#         docker exec -t --privileged android bash -c "emulator @nexus -no-window -no-snapshot-load -noaudio -no-boot-anim -memory 4096 -accel off -camera-back none -gpu swiftshader_indirect"
+
 
 
     # - name: Run Playwright tests
