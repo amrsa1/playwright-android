@@ -17,13 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Install docker engine
+        run: |
+           brew install docker
+           colima start
+           
       - name: Docker Setup Buildx
-        uses: docker/setup-buildx-action@v2.4.1
-      
-#      - name: Install docker engine
- #       run: |
-  #         brew install docker
-   #        colima start
+        uses: docker/setup-buildx-action@v2.4.1      
            
       - name: Build docker image
         run: docker buildx build -t playwright .
