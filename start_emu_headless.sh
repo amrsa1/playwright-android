@@ -30,7 +30,6 @@ function check_hardware_acceleration() {
     echo "$hw_accel_flag"
 }
 
-
 hw_accel_flag=$(check_hardware_acceleration)
 
 function launch_emulator () {
@@ -50,7 +49,6 @@ function launch_emulator () {
     return 1
   fi
 }
-
 
 function check_emulator_status () {
   printf "${G}==> ${BL}Checking emulator booting up status 🧐${NC}\n"
@@ -84,7 +82,6 @@ function check_emulator_status () {
     sleep 4
   done
 };
-
 
 function disable_animation() {
   adb shell "settings put global window_animation_scale 0.0"
