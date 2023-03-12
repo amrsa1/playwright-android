@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Docker Setup QEMU
+        uses: docker/setup-qemu-action@v2.1.0
+      
       - name: Install docker engine
         run: |
            brew install docker
@@ -25,7 +28,6 @@ jobs:
       - name: Build docker image
         run: docker build -t playwright .
       
-
       - name: Initialize container
         run: docker run -td --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE -e HW_ACCEL_OVERRIDE="$HW_ACCEL_OVERRIDE" --name android playwright
 
