@@ -17,14 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Docker Setup QEMU
-        uses: docker/setup-qemu-action@v2.1.0
-      
       - name: Install docker engine
         run: |
            brew install docker
            colima start   
            
+      - name: Docker Setup QEMU
+        uses: docker/setup-qemu-action@v2.1.0
+        
       - name: Build docker image
         run: docker build -t playwright .
       
