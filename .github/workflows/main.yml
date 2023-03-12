@@ -29,11 +29,11 @@ jobs:
         run: docker build -t playwright .
       
       - name: Initialize container
-        run: docker run -td --memory=2g --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE -e HW_ACCEL_OVERRIDE="$HW_ACCEL_OVERRIDE" --name android playwright
+        run: docker run -td --memory=8g --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE -e HW_ACCEL_OVERRIDE="$HW_ACCEL_OVERRIDE" --name android playwright
 
       - name: Prepare emulator & execute the test
         run: |
-         docker exec -t --privileged android bash -c "emulator @nexus -no-window -no-snapshot -noaudio -no-boot-anim  -no-accel -camera-back none -gpu swiftshader_indirect -show-kernel -debug-kernel -engine qemu2 -qemu -cpu max"
+         docker exec -t --privileged android bash -c "emulator @nexus -no-window -no-snapshot -noaudio -no-boot-anim -memory 4096 -no-accel -camera-back none -gpu swiftshader_indirect -show-kernel -debug-kernel -engine qemu2 -qemu -cpu max"
          docker exec -t --privileged android bash -c "chmod +x start_emu_headless.sh"
          docker exec -t --privileged android bash -c "emulator @nexus -no-window -no-snapshot -noaudio -no-boot-anim -memory 4096 -accel off -camera-back none -gpu host"
    #      docker exec -t --privileged android bash -c "./start_emu_headless.sh && npm run test"
