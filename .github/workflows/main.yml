@@ -8,7 +8,7 @@ on:
 env:
   EMULATOR_TIMEOUT: 600
   OSTYPE: macos
-  HW_ACCEL_OVERRIDE: ""
+  HW_ACCEL_OVERRIDE: "-accel off"
    
 jobs:
   test:
