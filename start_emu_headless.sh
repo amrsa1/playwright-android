@@ -41,7 +41,7 @@ function launch_emulator () {
   fi
   if [[ "$OSTYPE" == *darwin* ]] || [[ "$OSTYPE" == *macos* ]]; then
     echo "${OSTYPE}: emulator ${options} -gpu swiftshader_indirect"
-    nohup emulator $options -gpu swiftshader_indirect &
+    nohup emulator $options -gpu off &
   fi
 
   if [ $? -ne 0 ]; then
