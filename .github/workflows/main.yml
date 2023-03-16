@@ -26,7 +26,7 @@ jobs:
 #         uses: docker/setup-qemu-action@v2.1.0
         
       - name: Build docker image
-        run: docker --privileged build -t playwright .
+        run: docker build -t playwright .
       
       - name: Initialize container
         run: docker run -td --memory=8g --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE -e HW_ACCEL_OVERRIDE="$HW_ACCEL_OVERRIDE" --name android playwright
