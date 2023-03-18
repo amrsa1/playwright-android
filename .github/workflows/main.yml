@@ -20,7 +20,11 @@ jobs:
       - name: Install docker engine
         run: |
             brew install docker
-            colima start   
+            colima start
+            docker-machine stop
+            VBoxManage modifyvm default --cpus 2
+            VBoxManage modifyvm default --memory 4096
+            docker-machine start
            
       - name: Docker Setup QEMU
         uses: docker/setup-qemu-action@v2.1.0
