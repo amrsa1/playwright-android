@@ -21,13 +21,12 @@ jobs:
         run: |
             brew install docker
             colima start
-            docker-machine stop
-            VBoxManage modifyvm default --cpus 2
-            VBoxManage modifyvm default --memory 4096
-            docker-machine start
+            sudo /bin/systemctl stop docker.service
+            sudo dockerd --memory=8192 &
+            docker info
            
-      - name: Docker Setup QEMU
-        uses: docker/setup-qemu-action@v2.1.0
+#      - name: Docker Setup QEMU
+#        uses: docker/setup-qemu-action@v2.1.0
         
       - name: Build docker image
         run: docker build -t playwright .
