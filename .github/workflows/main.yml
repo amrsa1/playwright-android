@@ -21,8 +21,6 @@ jobs:
         run: |
             brew install docker
             colima start
-            sudo /bin/systemctl stop docker.service
-            sudo dockerd --memory=8192 &
             docker info
            
 #      - name: Docker Setup QEMU
@@ -32,7 +30,7 @@ jobs:
         run: docker build -t playwright .
       
       - name: Initialize container
-        run: docker run -td --memory=8g --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE -e HW_ACCEL_OVERRIDE="$HW_ACCEL_OVERRIDE" --name android playwright
+        run: docker run -td --cpus="1.5" --memory=10g --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE -e HW_ACCEL_OVERRIDE="$HW_ACCEL_OVERRIDE" --name android playwright
 
       - name: Prepare emulator & execute the test
         run: |
