@@ -30,7 +30,7 @@ jobs:
           tag: playwright
       - name: info
         run: 
-           docker images
+           docker buildx ls
       
       - name: Initialize container
         run: docker run -td --cpus="1.5" --memory=10g --privileged -e EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT -e OSTYPE=$OSTYPE -e HW_ACCEL_OVERRIDE="$HW_ACCEL_OVERRIDE" --name android playwright
