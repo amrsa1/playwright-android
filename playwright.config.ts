@@ -4,7 +4,7 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   use: {
     actionTimeout: 0,
-    baseURL: 'https://testguild.com/',
+    baseURL: 'https://www.nopcommerce.com/en',
   },
   projects: [{
     name: 'android-emulator'
