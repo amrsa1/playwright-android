@@ -20,6 +20,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3.6.0
+
         
       - name: Add avdmanager and sdkmanager to system PATH
         run: |
@@ -51,3 +53,9 @@ jobs:
          name: playwright-report
          path: playwright-report/
          retention-days: 30
+     
+      - name: actions/upload-artifact@v3
+        if: always()
+        run: |
+          node -v
+          adb devices -l
