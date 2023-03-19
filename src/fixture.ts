@@ -21,8 +21,8 @@ const fixtures = base.extend<MyFixtures>({
                 const context = await device.launchBrowser({
                     baseURL: baseURL
                 });
+                console.log(context)
                 const page = await context.newPage();
-                console.log(page)
                 await use(page)
             })
     },
