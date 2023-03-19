@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies
         run: | 
           npm i
-          npx install playwright
+          npx playwright install
           
       - name: Execute the test
         run: npm run test
