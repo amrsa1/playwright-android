@@ -43,4 +43,4 @@ jobs:
         run: npm i
 
       - name: Execute the test
-        run: npm i  
+        run: npm run test 
