@@ -4,7 +4,7 @@
   "description": "playwright e2e against android device",
   "main": "index.js",
   "scripts": {
-    "test": "adb devices && playwright test --config=playwright.config.ts",
+    "test": "adb devices && npx playwright test --trace on",
     "report": "npx playwright show-report"
     },
   "keywords": [
