@@ -12,19 +12,24 @@ type MyFixtures = {
 const fixtures = base.extend<MyFixtures>({
 
     page: async ({ baseURL }, use) => {
-        await _android.launchServer({ deviceSerialNumber: 'emulator-5554', omitDriverInstall: true })
-            .then(async res => {
-                console.log(res.wsEndpoint())
-                device = await _android.connect(res.wsEndpoint())
-                await device.shell('pm clear com.android.chrome');
-                await device.shell('am set-debug-app --persistent com.android.chrome')
-                const context = await device.launchBrowser({
-                    baseURL: baseURL
-                });
-                console.log(context)
-                const page = await context.newPage();
-                await use(page)
-            })
+        try {
+            await _android.launchServer({ deviceSerialNumber: 'emulator-5554', omitDriverInstall: true })
+                .then(async res => {
+                    console.log(res.wsEndpoint())
+                    device = await _android.connect(res.wsEndpoint())
+                    await device.shell('pm clear com.android.chrome');
+                    await device.shell('am set-debug-app --persistent com.android.chrome')
+                    const context = await device.launchBrowser({
+                        baseURL: baseURL
+                    });
+                    console.log(context)
+                    const page = await context.newPage();
+                    await use(page)
+                })
+        } catch (error) {
+            console.log(error)
+        }
+
     },
 
     landingPage: async ({ page }, use) => {
