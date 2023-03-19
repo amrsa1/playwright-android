@@ -43,8 +43,10 @@ jobs:
           EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
 
       - name: Install dependencies
-        run: npm i
-
+        run: | 
+          npm i
+          npx install playwright
+          
       - name: Execute the test
         run: npm run test
         
