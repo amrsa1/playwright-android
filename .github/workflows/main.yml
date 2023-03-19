@@ -43,4 +43,11 @@ jobs:
         run: npm i
 
       - name: Execute the test
-        run: npm run test 
+        run: npm run test
+        
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+         name: playwright-report
+         path: playwright-report/
+         retention-days: 30
