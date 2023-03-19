@@ -3,11 +3,12 @@ import { fixtures as test } from '../fixture';
 
 test.describe('Android emulator Test Suite', () => {
 
-    test.beforeEach(async ({ page }) => {
-        await page.goto('/')
-    })
+    //test.beforeEach(async ({ page }) => {
+    //    await page.goto('/')
+   // })
 
-    test("should have page heading", async ({ landingPage }) => {
+    test.only("should have page heading", async ({ landingPage, page }) => {
+        await page.goto('/')
         await expect(landingPage.pageHeading).toHaveText('Free and open-source eCommerce platformS')
     })
 
