@@ -22,6 +22,7 @@ const fixtures = base.extend<MyFixtures>({
                     baseURL: baseURL
                 });
                 const page = await context.newPage();
+                console.log(page)
                 await use(page)
             })
     },
