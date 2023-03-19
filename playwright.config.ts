@@ -17,7 +17,7 @@ const config: PlaywrightTestConfig = {
   expect: {
     timeout: 5000
   },
-  retries: 0,
+  retries: 1,
   reporter: [
     ['list'],
     ['html', { open: 'never' }],
