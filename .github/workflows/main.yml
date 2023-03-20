@@ -36,7 +36,7 @@ jobs:
       
       - name: Launch emulator
         run: |
-          chmod +x /home/runner/.android/emu-update-last-check.ini
+          chown $USER:$USER ${process.env.ANDROID_HOME} -R
           chmod +x ./start_emu_headless.sh
           EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
 
