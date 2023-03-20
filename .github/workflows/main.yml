@@ -38,6 +38,8 @@ jobs:
         run: |
           sudo chown -R root:wheel "${{ github.workspace }}"
           sudo chmod -R u+rwx,g+rwx,o+rwx "${{ github.workspace }}"
+          sudo chown -R root:wheel $ANDROID_HOME
+          sudo chmod -R u+rwx,g+rwx,o+rwx $ANDROID_HOME
         shell: bash
         
       - name: Launch emulator
