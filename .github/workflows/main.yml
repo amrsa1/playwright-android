@@ -16,7 +16,7 @@ jobs:
   playwright-emulator:
     timeout-minutes: 20
     
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     
     steps:
       - uses: actions/checkout@v3
@@ -34,9 +34,14 @@ jobs:
         run: |
             echo "no" | avdmanager --verbose create avd --force -n $EMULATOR_NAME --abi "${ANDROID_TARGET}/${ANDROID_ARCH}" -k "system-images;android-${API_LEVEL};${ANDROID_TARGET};${ANDROID_ARCH}"
       
+      - name: Set up job as root
+        run: |
+          sudo chown -R root:wheel "${{ github.workspace }}"
+          sudo chmod -R u+rwx,g+rwx,o+rwx "${{ github.workspace }}"
+        shell: bash
+        
       - name: Launch emulator
         run: |
-          sudo chown $USER:$USER $ANDROID_HOME -R
           chmod +x ./start_emu_headless.sh
           EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
 
