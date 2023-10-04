@@ -2,7 +2,7 @@ import { AndroidDevice, test as base, _android } from '@playwright/test';
 import LandingPage from '../src/pages/landingPage';
 
 const retries = 3;
-const timeoutMs = 12000;
+const timeoutMs = 30000;
 
 function timeoutPromise(ms: number | undefined) {
     return new Promise((resolve, reject) => {
@@ -45,7 +45,6 @@ const fixtures = base.extend<MyFixtures>({
             async () => {
                 await _android.launchServer({ deviceSerialNumber: 'emulator-5554', omitDriverInstall: false })
                     .then(async (res) => {
-                        console.log(res.wsEndpoint());
                         device = await _android.connect(res.wsEndpoint());
                         await device.shell('pm clear com.android.chrome');
                         await device.shell('am set-debug-app --persistent com.android.chrome');

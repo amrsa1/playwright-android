@@ -4,7 +4,7 @@
   "description": "playwright e2e against android device",
   "main": "index.js",
   "scripts": {
-    "test": "DEBUG=pw:browser playwright test --trace on",
+    "test": "playwright test --trace on",
     "report": "npx playwright show-report"
     },
   "keywords": [
@@ -16,6 +16,6 @@
   "author": "Amrsa",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.31.2"
+    "@playwright/test": "^1.38.1"
   }
 }

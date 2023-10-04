@@ -4,7 +4,11 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   use: {
     actionTimeout: 0,
-    baseURL: 'https://testguild.com/',
+    baseURL: 'https://www.nopcommerce.com/en',
+    trace: 'retain-on-failure',
+    video: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+
   },
   projects: [{
     name: 'android-emulator'
@@ -17,7 +21,7 @@ const config: PlaywrightTestConfig = {
   expect: {
     timeout: 5000
   },
-  retries: 1,
+  retries: 0,
   reporter: [
     ['list'],
     ['html', { open: 'never' }],
